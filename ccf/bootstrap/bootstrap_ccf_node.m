@@ -1,8 +1,9 @@
 function  pvalue = bootstrap_ccf_node(normalizeddir, nodeno, threshold)
+
 % Goto the location where both the classes have been merged
 
 % Read all the files into an array
-malemats = dir(strcat(normalizeddir, '/males/*.mat'));
+malemats = dir(strcat(normalizeddir, '/high/*.mat'));
 
 mergeddir = strcat(normalizeddir, '/merged/');
 files = dir(strcat(mergeddir, '*.mat')); 
@@ -27,9 +28,9 @@ hist(BT);
 % Find out number of observations more extreme then the alternative hypothesis
 C = (abs(BT) > threshold);
 num = prod(size(find(C)));
+
 % Calculate its probablity. This is the p-value
 pvalue = num/3000;
-
 xlabel('Test statistic', 'FontSize',14);
 ylabel('Frequency', 'FontSize',14);
 title('Test statistic distribution', 'FontSize',16);

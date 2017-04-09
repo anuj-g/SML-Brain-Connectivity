@@ -1,8 +1,8 @@
-function edge_betweenness_normalized_errorbars_final(normdir, edgelow, edgehigh)
+function [MeanEBCMales, errorEBCMales, MeanEBCFemales, errorEBCFemales] = edge_betweenness_normalized_errorbars_final(normdir, edgelow, edgehigh)
 %Process Sex:0
 
 %Clear variables
-maledir = strcat(normdir, '/males/');
+maledir = strcat(normdir, '/high/');
 mfiles = dir(strcat(maledir, '*.mat'));
 
 for k = 1:numel(mfiles)
@@ -17,7 +17,7 @@ end
 MeanEBCMales = mean(OM);
 errorEBCMales = std(OM)/sqrt(size(OM,1));
 
-femaledir = strcat(normdir, '/females/');
+femaledir = strcat(normdir, '/low/');
 femfiles = dir(strcat(femaledir, '*.mat'));
 for k = 1:numel(femfiles)
     M = load(strcat(femaledir, femfiles(k).name));
@@ -30,6 +30,7 @@ for k = 1:numel(femfiles)
 end
 MeanEBCFemales = mean(OF);
 errorEBCFemales = std(OF)/ sqrt(size(OF,1));
+%{
 figure;
 hold on;
 errorbar(edgelow:edgehigh, MeanEBCMales(edgelow:edgehigh), errorEBCMales(edgelow:edgehigh), '.k','color','blue');
@@ -41,3 +42,4 @@ legend('Males', 'Females');
 
 hold off;
 clearvars;
+%}

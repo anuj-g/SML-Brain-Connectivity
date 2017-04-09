@@ -1,4 +1,4 @@
-function  ccf_normalized_errorbars(normalizeddir)
+function [MeanCCFNodeMales, errorMales, MeanCCFNodeFemales, errorFemales] = ccf_normalized_errorbars(normalizeddir)
 
 %Process Sex 0
 maledir = strcat(normalizeddir, '/high/');
@@ -19,10 +19,10 @@ MeanCCFNodeMales = mean(OM);
 errorMales = std(OM)/sqrt(size(OM,1));
 
 %Plot the mean ccf of each node with error bars in blue
-errorbar(1:prod(size(MeanCCFNodeMales)), MeanCCFNodeMales,errorMales,'.k', 'color', 'blue');
+%errorbar(1:prod(size(MeanCCFNodeMales)), MeanCCFNodeMales,errorMales,'.k', 'color', 'blue');
 
 %Use the same figure for further plots
-hold on;
+%hold on;
 
 % Do the exact same thing for other sex as well
 femdir = strcat(normalizeddir, '/low/');
@@ -39,6 +39,7 @@ MeanCCFNodeFemales = mean(OF);
 %Calculate standard error(for each node)
 errorFemales = std(OF)/sqrt(size(OF,1));
 %Plot this with error bars in red
+%{
 errorbar(1:prod(size(MeanCCFNodeFemales)), MeanCCFNodeFemales, errorFemales,'.k', 'color', 'red');
 
 xlabel('Brain region',  'FontSize',14);
@@ -48,3 +49,4 @@ legend('high', 'low');
 
 hold off;
 clearvars;
+%}
