@@ -1,5 +1,4 @@
 function  pvalue = bootstrap_ccf_node(normalizeddir, nodeno, threshold)
-
 % Goto the location where both the classes have been merged
 
 % Read all the files into an array

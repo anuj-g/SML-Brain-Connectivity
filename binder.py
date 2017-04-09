@@ -10,8 +10,6 @@ input_data_path = r"D:\ASU Classes\Spring17\SML\brain-analysis-for-gender-classi
 split_dir_path_1 = r"D:\ASU Classes\Spring17\SML\brain-analysis-for-gender-classification\datasets\fsiq\low"
 split_dir_path_2 = r"D:\ASU Classes\Spring17\SML\brain-analysis-for-gender-classification\datasets\fsiq\high"
 
-def split_files():
-
 def main():
     workbook = xlrd.open_workbook(os.path.join(xl_path, 'metainfo.xls'))
     sheet = workbook.sheet_by_index(0)
