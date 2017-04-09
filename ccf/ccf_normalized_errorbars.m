@@ -1,7 +1,7 @@
 function  ccf_normalized_errorbars(normalizeddir)
 
 %Process Sex 0
-maledir = strcat(normalizeddir, '/males/');
+maledir = strcat(normalizeddir, '/high/');
 mfiles = dir(strcat(maledir, '*.mat'));
 for k = 1:numel(mfiles)
     M = load(strcat(maledir, mfiles(k).name));
@@ -25,7 +25,7 @@ errorbar(1:prod(size(MeanCCFNodeMales)), MeanCCFNodeMales,errorMales,'.k', 'colo
 hold on;
 
 % Do the exact same thing for other sex as well
-femdir = strcat(normalizeddir, '/females/');
+femdir = strcat(normalizeddir, '/low/');
 femfiles = dir(strcat(femdir, '*.mat'));
 for k = 1:numel(femfiles)
     M = load(strcat(femdir, femfiles(k).name));
@@ -44,7 +44,7 @@ errorbar(1:prod(size(MeanCCFNodeFemales)), MeanCCFNodeFemales, errorFemales,'.k'
 xlabel('Brain region',  'FontSize',14);
 ylabel('Clustering Coefficient',  'FontSize',14);
 title('Mean of clustering coefficient for each brain region',  'FontSize',16);
-legend('Males', 'Females');
+legend('high', 'low');
 
 hold off;
 clearvars;

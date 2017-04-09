@@ -1,8 +1,8 @@
-function partcf_normalized_errorbars(normdir)
+function [MeanPCFNodeMales, errorMales, MeanPCFNodeFemales, errorFemales] = partcf_normalized_errorbars(normdir)
 %Process Sex:0
 
 %Clear variables
-maledir = strcat(normdir, '/males/');
+maledir = strcat(normdir, '/high/');
 mfiles = dir(strcat(maledir, '*.mat'));
 
 for k = 1:numel(mfiles)
@@ -22,12 +22,12 @@ MeanPCFNodeMales = mean(OM);
 errorMales = std(OM)/sqrt(size(OM,1));
 
 %Plot the mean ccf of each node with error bars in blue
-errorbar(1:prod(size(MeanPCFNodeMales)), MeanPCFNodeMales,errorMales,'.k', 'color', 'blue');
+%errorbarMale = errorbar(1:prod(size(MeanPCFNodeMales)), MeanPCFNodeMales,errorMales,'.k', 'color', 'blue');
 
 %Use the same figure for further plots
-hold on;
+%hold on;
 
-femaledir = strcat(normdir, '/females/');
+femaledir = strcat(normdir, '/low/');
 femfiles = dir(strcat(femaledir, '*.mat'));
 for k = 1:numel(femfiles)
     M = load(strcat(femaledir, femfiles(k).name));
@@ -43,7 +43,8 @@ MeanPCFNodeFemales = mean(OF);
 %Calculate standard error(for each node)
 errorFemales = std(OF)/sqrt(size(OF,1));
 %Plot this with error bars in red
-errorbar(1:prod(size(MeanPCFNodeFemales)), MeanPCFNodeFemales, errorFemales,'.k', 'color', 'red');
+%{
+errorbarFemale = errorbar(1:prod(size(MeanPCFNodeFemales)), MeanPCFNodeFemales, errorFemales,'.k', 'color', 'red');
 xlabel('Brain region',  'FontSize',14);
 ylabel('Participation Coefficient',  'FontSize',14);
 title('Mean of participation coefficient for each brain region',  'FontSize',16);
@@ -51,3 +52,4 @@ legend('Males', 'Females');
 
 hold off;
 clearvars;
+%}
