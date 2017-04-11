@@ -18,7 +18,6 @@ minCCFFemale = MeanCCFNodeFemales - errorBarCCFFemale.YPositiveDelta;
 MeanCCFDiff=MeanCCFNodeFemales-MeanCCFNodeMales;
 
 for i=1:70
-    disp(minCCFMale(i));
     if(minCCFMale(i)>maxCCFFemale(i))
         CCFdiff(i)=minCCFMale(i)-maxCCFFemale(i);
     elseif(minCCFFemale(i)>maxCCFMale(i))
